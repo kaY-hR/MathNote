@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -20,10 +20,9 @@
         window.addEventListener('load', function () {
             const tabsData = [
                 // AutomaticallyReplace-start
-                { id: '1_概要', label: '概要', file: '1_概要.html' },
-                { id: '2_発展', label: '発展', file: '2_発展.html' },
-                { id: '3_基礎', label: '基礎', file: '3_基礎.html' }
-                // AutomaticallyReplace-end
+				{ id: '1_概要', label: '概要', file: '1_概要.html' },
+				{ id: '2_数理統計学', label: '数理統計学', file: '2_数理統計学.html' }
+				// AutomaticallyReplace-end
             ];
 
             // タブの数に応じて動的に幅を設定
@@ -85,9 +84,9 @@
                 }
             } else {
                 // もし選択情報がない場合は最初のタブを選択
-            const firstTab = tabsData[0];
-            document.getElementById(firstTab.id).checked = true;
-            showTabContent(firstTab.file);
+                const firstTab = tabsData[0];
+                document.getElementById(firstTab.id).checked = true;
+                showTabContent(firstTab.file);
             }
             console.log(selectedTabIndex)
             
