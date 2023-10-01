@@ -1,1 +1,99 @@
-コピ�E完亁E "C:\Users\ato-5\Desktop\Develop\Projects\MathNote\MathNote\source\index.html" -
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>My Note</title>
+</head>
+
+<body>
+    <div class="tabs" id="tabs-container">
+        <!-- タブを自動的に生成するための空のコンテナ -->
+    </div>
+    
+    <div id="tab-contents">
+        <!-- タブコンテンツの表示領域 -->
+    </div>
+
+    <script>
+        // ページロード時に実行
+        window.addEventListener('load', function () {
+            const tabsData = [
+                // AutomaticallyReplace-start
+				{ id: '1_概要', label: '概要', file: '1_概要.html' },
+				{ id: '2_発展', label: '発展', file: '2_発展.html' },
+				{ id: '3_基礎', label: '基礎', file: '3_基礎.html' }
+				// AutomaticallyReplace-end
+            ];
+
+            // タブの数に応じて動的に幅を設定
+            const numTabs = tabsData.length;
+            const tabWidth = `calc(100% / ${numTabs})`;
+            const tabItems = document.querySelectorAll('.tab_item');
+            tabItems.forEach(tabItem => {
+                tabItem.style.width = tabWidth;
+            });
+
+            const tabsContainer = document.getElementById('tabs-container');
+            const tabContents = document.getElementById('tab-contents');
+
+            // タブの数だけループしてタブを生成
+            tabsData.forEach(tab => {
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'tab_item';
+                input.id = tab.id;
+                input.addEventListener('change', function () {
+                    showTabContent(tab.file);
+
+                    // タブの選択情報を保存
+                    sessionStorage.setItem('selectedTab', tab.id);
+                });
+
+                const label = document.createElement('label');
+                label.classList.add('tab_item');
+                label.setAttribute('for', tab.id);
+                label.textContent = tab.label;
+
+                tabsContainer.appendChild(input);
+                tabsContainer.appendChild(label);
+            });
+
+            function showTabContent(file) {
+                // コンテンツを読み込むiframeを生成
+                const iframe = document.createElement('iframe');
+                iframe.id = 'myiframe'
+                iframe.src = file;
+                iframe.setAttribute('sandbox', 'allow-popups-to-escape-sandbox allow-modals allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation');
+                
+                // コンテンツを一旦クリアしてから新しいコンテンツを表示
+                tabContents.innerHTML = '';
+                tabContents.appendChild(iframe);
+            
+            }
+
+            // URLからクエリパラメータを取得
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedTabIndex = urlParams.get('tab') - 1;
+
+            // クエリパラメータに基づいてタブを選択し、対応するコンテンツを表示
+            if (selectedTabIndex !== null) {
+                const tabIndex = parseInt(selectedTabIndex);
+                if (!isNaN(tabIndex) && tabIndex >= 0 && tabIndex < tabsData.length) {
+                    const selectedTab = tabsData[tabIndex];
+                    document.getElementById(selectedTab.id).checked = true;
+                    showTabContent(selectedTab.file);
+                }
+            } else {
+                // もし選択情報がない場合は最初のタブを選択
+                const firstTab = tabsData[0];
+                document.getElementById(firstTab.id).checked = true;
+                showTabContent(firstTab.file);
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>

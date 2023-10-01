@@ -11,8 +11,6 @@ for %%f in (*.html) do (
     
     REM ファイルをコピー
     copy "!source!" "!destination!"
-    
-    echo コピー完了: "!source!" -> "!destination!"
 )
 
 endlocal
