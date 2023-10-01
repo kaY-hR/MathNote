@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -71,10 +71,25 @@
                 tabContents.appendChild(iframe);
             }
 
-            // 初回表示時に最初のタブを選択し、対応するコンテンツを表示
+            // URLからクエリパラメータを取得
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedTabIndex = urlParams.get('tab') - 1;
+
+            // クエリパラメータに基づいてタブを選択し、対応するコンテンツを表示
+            if (selectedTabIndex >= 0) {
+                const tabIndex = parseInt(selectedTabIndex);
+                if (!isNaN(tabIndex) && tabIndex >= 0 && tabIndex < tabsData.length) {
+                    const selectedTab = tabsData[tabIndex];
+                    document.getElementById(selectedTab.id).checked = true;
+                    showTabContent(selectedTab.file);
+                }
+            } else {
+                // もし選択情報がない場合は最初のタブを選択
             const firstTab = tabsData[0];
             document.getElementById(firstTab.id).checked = true;
             showTabContent(firstTab.file);
+            }
+            console.log(selectedTabIndex)
             
         });
 
