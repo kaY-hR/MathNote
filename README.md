@@ -1,6 +1,6 @@
 # 概要
 
-Just Visit <a href="index.html">Here</a>!
+Just Visit [Here](https://kay-hr.github.io/MathNote/)!
 
 私的な数学ノートです。同様の形式でノートを作りたい方は、cloneして参考にしてください。
 
