@@ -22,7 +22,7 @@ class Program
     static void Main()
     {
         // 書き換える本体のhtmlファイル名
-        string targetHtml = "0_Main.html";
+        string targetHtml = "index.html";
 
         // 同一フォルダにあるmdファイル名を取得
         var mdFilesList = Directory.EnumerateFiles(".", "*.md").OrderBy(f => f).ToList();
