@@ -10,19 +10,21 @@ Just Visit [Here](https://kay-hr.github.io/MathNote/)!
 1. VSCodeのインストール
     * 拡張機能 markdown preview enhanced のインストール
     * 拡張機能 plantuml のインストール
+1. sourceフォルダに移動
 1. {i}_Title.mdの形式でコンテンツページを作成
 1. crtl+K -> VでPreview表示し、その状態でctrl+Sでmdファイルを保存
 →htmlファイルが生成されます。
 1. ReviceMainHtml.exeを実行
-1. 0_Main.htmlを開く
+1. index.htmlを開く
 
 ## 注意
 
-ここでは.vscode/settings.json内で、"markdown-preview-enhanced.enableScriptExecution": trueを設定しています。これはインデックスをサイドバーで表示するために必要ですが、セキュリティ上この設定が好ましくない場合は、削除またはfalseにしてください。
+* ここでは.vscode/settings.json内で、"markdown-preview-enhanced.enableScriptExecution": trueを設定しています。これはインデックスをサイドバーで表示するために必要ですが、セキュリティ上この設定が好ましくない場合は、削除またはfalseにしてください。
+* copy_htmls_to_docs.batを実行すると、html/cssファイルがdocsフォルダにコピーされますが、これはGithub Pages用です。ローカルで使う場合はsourceフォルダのみを編集・閲覧するのみで十分です。
 
 # その他使い方
 
-## 親ページ(0_Main.html)のスタイルを変更したいとき
+## 親ページ(index.html)のスタイルを変更したいとき
 
 style.cssを編集してください。
 
@@ -32,7 +34,7 @@ style.cssを編集してください。
 
 ## markdownファイルを追加・削除したとき、またはタイトルを変更したとき
 
-0_Main.htmlを修正する必要があります。
+index.htmlを修正する必要があります。
 ReviceMainHtml.exe を実行してください。
 
 ## ReviceMainHtml.csを修正したいとき
