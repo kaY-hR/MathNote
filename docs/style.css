@@ -1,0 +1,78 @@
+html{
+  height: 100%;
+  padding: 0;
+}
+
+body{
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/*タブ切り替え全体のスタイル*/
+.tabs {
+background-color: #fff;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+width: auto;
+height: 50px;
+margin: 0;
+}
+
+/*タブのスタイル*/
+.tab_item {
+width: auto;
+height: 50px;
+border-bottom: 3px solid #5ab4bd;
+background-color: #d9d9d9;
+line-height: 50px;
+font-size: 16px;
+text-align: center;
+color: #565656;
+display: block;
+float: left;
+text-align: center;
+font-weight: bold;
+transition: all 0.2s ease;
+display: block;
+padding-left: 20px;
+padding-right: 20px;
+}
+.tab_item:hover {
+opacity: 0.75;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+#tab-contents {
+width: 100%;
+height: calc(100% - 60px);
+padding: 0;
+clear: both;
+overflow: hidden;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+background-color: #5ab4bd;
+color: #fff;
+}
+
+iframe{
+  width: 100%;
+  height: 100%;
+}
+
+.manual_table{
+display: table;
+width: 100%;
+height: 100%;
+}
+
+.manual_cell{
+display: table-cell;
+height: 100%;
+}

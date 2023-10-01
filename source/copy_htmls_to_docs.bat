@@ -13,4 +13,15 @@ for %%f in (*.html) do (
     copy "!source!" "!destination!"
 )
 
+REM コピー元のstyle.cssファイルパス
+set "css_source=style.css"
+
+REM コピー先のstyle.cssファイルパス
+set "css_destination=..\docs\style.css"
+
+REM style.cssファイルをコピー
+if exist "!css_source!" (
+    copy "!css_source!" "!css_destination!"
+)
+
 endlocal
