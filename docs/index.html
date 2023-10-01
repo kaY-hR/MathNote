@@ -20,10 +20,10 @@
         window.addEventListener('load', function () {
             const tabsData = [
                 // AutomaticallyReplace-start
-				{ id: '1_概要', label: '概要', file: '1_概要.html' },
-				{ id: '2_発展', label: '発展', file: '2_発展.html' },
-				{ id: '3_基礎', label: '基礎', file: '3_基礎.html' }
-				// AutomaticallyReplace-end
+                { id: '1_概要', label: '概要', file: '1_概要.html' },
+                { id: '2_発展', label: '発展', file: '2_発展.html' },
+                { id: '3_基礎', label: '基礎', file: '3_基礎.html' }
+                // AutomaticallyReplace-end
             ];
 
             // タブの数に応じて動的に幅を設定
@@ -69,29 +69,14 @@
                 // コンテンツを一旦クリアしてから新しいコンテンツを表示
                 tabContents.innerHTML = '';
                 tabContents.appendChild(iframe);
+            }
+
+            // 初回表示時に最初のタブを選択し、対応するコンテンツを表示
+            const firstTab = tabsData[0];
+            document.getElementById(firstTab.id).checked = true;
+            showTabContent(firstTab.file);
             
-            }
-
-            // URLからクエリパラメータを取得
-            const urlParams = new URLSearchParams(window.location.search);
-            const selectedTabIndex = urlParams.get('tab') - 1;
-
-            // クエリパラメータに基づいてタブを選択し、対応するコンテンツを表示
-            if (selectedTabIndex !== null) {
-                const tabIndex = parseInt(selectedTabIndex);
-                if (!isNaN(tabIndex) && tabIndex >= 0 && tabIndex < tabsData.length) {
-                    const selectedTab = tabsData[tabIndex];
-                    document.getElementById(selectedTab.id).checked = true;
-                    showTabContent(selectedTab.file);
-                }
-            } else {
-                // もし選択情報がない場合は最初のタブを選択
-                const firstTab = tabsData[0];
-                document.getElementById(firstTab.id).checked = true;
-                showTabContent(firstTab.file);
-            }
         });
-
 
     </script>
 </body>
