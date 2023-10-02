@@ -22,11 +22,10 @@ class Program
     static void Main()
     {
         // 書き換える本体のhtmlファイル名
-        string targetHtml = "index.html";
+        string targetHtml = ".\\source\\index.html";
 
         // 同一フォルダにあるmdファイル名を取得
-        var mdFilesList = Directory.EnumerateFiles(".", "*.md").OrderBy(f => f).ToList();
-        mdFilesList.Remove(".\\README.md");
+        var mdFilesList = Directory.EnumerateFiles(".\\source", "*.md").OrderBy(f => f).ToList();
 
         // リスト内の各mdファイル名と同一のhtmlファイル名を生成
         var htmlFilesList = mdFilesList.Select(md => Path.ChangeExtension(md, ".html")).ToList();
