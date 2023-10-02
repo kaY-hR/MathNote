@@ -53,7 +53,7 @@ class Program
             {
                 id = Path.GetFileNameWithoutExtension(htmlFilesList[i]),
                 label = labelsList[i],
-                file = htmlFilesList[i].Substring(2).Replace("\\", "/")
+                file =  Path.GetFileName(htmlFilesList[i])
             };
             tabsData.Add(tabData);
         }
