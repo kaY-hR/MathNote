@@ -17,7 +17,7 @@ for number, subdirectory in enumerate(subdirectories):
     image_files = [f for f in os.listdir(subdirectory_path) if f.endswith(".JPG")]
     
     # Markdownファイル名を生成します（例：プレゼン1.md）
-    markdown_file_name = f"source\\{str(number+200)}_{subdirectory}.md"
+    markdown_file_name = f"source\\{subdirectory}.md"
     
     # MarkdownファイルをUTF-8エンコーディングで書き込みます
     with open(markdown_file_name, "w", encoding="utf-8") as markdown_file:
