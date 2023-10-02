@@ -35,12 +35,18 @@ def generate_markdown(abs_path,folder_path, depth=0):
 
     return markdown
 
-# フォルダAからMarkdownを生成
+# RootフォルダからMarkdownを生成
 markdown_content = generate_markdown(args.folder_path,args.folder_path)
+
+
+# template.mdの内容を読み取る
+with open("resources/auto_pptx/template.md", "r", encoding="utf-8") as template_file:
+    template_content = template_file.read()
 
 # Markdownファイルを書き込み
 markdown_file_name = f"{args.folder_path}.md"
 with open(markdown_file_name, "w", encoding="utf-8") as markdown_file:
+    markdown_file.write(template_content)
     markdown_file.write(markdown_content)
 
 print(f"Markdownファイル '{markdown_file_name}' が生成されました。")
