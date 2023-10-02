@@ -1,36 +1,46 @@
 import os
 import argparse
+from natsort import natsorted  # natsortをインポート
 
 # コマンドライン引数の解析を設定
-parser = argparse.ArgumentParser(description='Process subdirectory')
-parser.add_argument('subdirectory', type=str, help='Subdirectory to process')
+parser = argparse.ArgumentParser(description='Generate Markdown file for folder structure')
+parser.add_argument('folder_path', type=str, help='Path to the folder structure')
 
 # コマンドライン引数を解析
 args = parser.parse_args()
 
-# ベースディレクトリのパスを指定します
-base_directory = "resources/auto_pptx"
+# Markdownファイルを生成する再帰関数を定義
+def generate_markdown(abs_path,folder_path, depth=0):
+    folder_name = os.path.basename(folder_path)
+    markdown = f"{'#' * (depth + 1)} {folder_name}\n\n"
 
-# template.mdの内容を読み取ります
-with open("resources/auto_pptx/template.md", "r", encoding="utf-8") as template_file:
-    template_content = template_file.read()
+    slide_names = []
+    for item_name in os.listdir(folder_path):
+        item_path = os.path.join(folder_path, item_name)
 
-# サブディレクトリ内の画像ファイルの一覧を取得します
-subdirectory_path = os.path.join(base_directory, args.subdirectory)
-image_files = [f for f in os.listdir(subdirectory_path) if f.endswith(".JPG")]
+        if os.path.isdir(item_path):
+            markdown += generate_markdown(abs_path, item_path, depth + 1)
+        else:
+            slide_names.append(item_name)
 
-# Markdownファイル名を生成します（例：プレゼン1.md）
-markdown_file_name = f"source/{args.subdirectory}.md"
+    # スライド名を自然な順序でソート
+    slide_names = natsorted(slide_names)
 
-# MarkdownファイルをUTF-8エンコーディングで書き込みます
-with open(markdown_file_name, "w", encoding="utf-8") as markdown_file:
-    markdown_file.write(template_content+"\n\n")
-    markdown_file.write("# "+args.subdirectory+"\n\n")
-    # 画像ファイルをMarkdownに挿入します
-    for i, image_file in enumerate(image_files, start=1):
-        image_name = os.path.splitext(image_file)[0]
-        image_path = os.path.join("../resources/auto_pptx", args.subdirectory, image_file)  # パスを修正
+    # スライドへの画像リンクを追加
+    for slide_name in slide_names:
+        image_name = os.path.splitext(slide_name)[0]
+        image_path = os.path.relpath(os.path.join(abs_path, folder_path, slide_name), args.folder_path)
         image_path = image_path.replace("\\","/")
-        markdown_file.write(f"![{image_name}]({image_path})\n")
+        markdown += f"![{image_name}](/{image_path})\n"
+
+    return markdown
+
+# フォルダAからMarkdownを生成
+markdown_content = generate_markdown(args.folder_path,args.folder_path)
+
+# Markdownファイルを書き込み
+markdown_file_name = f"{args.folder_path}.md"
+with open(markdown_file_name, "w", encoding="utf-8") as markdown_file:
+    markdown_file.write(markdown_content)
 
 print(f"Markdownファイル '{markdown_file_name}' が生成されました。")
