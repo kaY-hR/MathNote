@@ -40,7 +40,7 @@ markdown_content = generate_markdown(args.folder_path,args.folder_path)
 
 
 # template.mdの内容を読み取る
-with open("resources/auto_pptx/template.md", "r", encoding="utf-8") as template_file:
+with open("source/assets/auto_pptx/template.md", "r", encoding="utf-8") as template_file:
     template_content = template_file.read()
 
 # Markdownファイルを書き込み

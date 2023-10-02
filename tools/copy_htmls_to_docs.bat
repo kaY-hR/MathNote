@@ -31,4 +31,7 @@ if exist "!css_source!" (
     copy "!css_source!" "!css_destination!"
 )
 
+REM assetsフォルダをコピー
+xcopy /s /i "..\source\assets" "!destination!\assets"
+
 endlocal
