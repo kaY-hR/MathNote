@@ -20,11 +20,9 @@
         window.addEventListener('load', function () {
             const tabsData = [
                 // AutomaticallyReplace-start
-				{ id: '1_概要', label: '概要', file: 'source/1_概要.html' },
-				{ id: '2_数理統計学', label: '数理統計学', file: 'source/2_数理統計学.html' },
-				{ id: '200_主成分分析(PCA)', label: '', file: 'source/200_主成分分析(PCA).html' },
-				{ id: '201_サポートベクターマシン(SVM)', label: '', file: 'source/201_サポートベクターマシン(SVM).html' },
-				{ id: '202_ラグランジュの未定乗数法+KKT条件', label: '', file: 'source/202_ラグランジュの未定乗数法+KKT条件.html' }
+				{ id: '01_概要', label: '概要', file: '01_概要.html' },
+				{ id: '02_数理統計学', label: '数理統計学', file: '02_数理統計学.html' },
+				{ id: '10_多変量解析', label: '多変量解析', file: '10_多変量解析.html' }
 				// AutomaticallyReplace-end
             ];
 
@@ -75,23 +73,24 @@
 
             // URLからクエリパラメータを取得
             const urlParams = new URLSearchParams(window.location.search);
-            const selectedTabIndex = urlParams.get('tab') - 1;
+            const selectedTabId = urlParams.get('tab');
 
             // クエリパラメータに基づいてタブを選択し、対応するコンテンツを表示
-            if (selectedTabIndex >= 0) {
-                const tabIndex = parseInt(selectedTabIndex);
-                if (!isNaN(tabIndex) && tabIndex >= 0 && tabIndex < tabsData.length) {
-                    const selectedTab = tabsData[tabIndex];
+            selected = false
+            if (selectedTabId) {
+                const selectedTab = tabsData.find(tab => tab.id === selectedTabId);
+                if (selectedTab) {
                     document.getElementById(selectedTab.id).checked = true;
                     showTabContent(selectedTab.file);
+                    selected = true
                 }
-            } else {
+            }
+            if (!selected) {
                 // もし選択情報がない場合は最初のタブを選択
                 const firstTab = tabsData[0];
                 document.getElementById(firstTab.id).checked = true;
                 showTabContent(firstTab.file);
             }
-            console.log(selectedTabIndex)
             
         });
 
