@@ -1,6 +1,4 @@
-# 概要
-
-Just Visit [Here](https://kay-hr.github.io/MathNote/)!
+# [こちらのサイト](https://kay-hr.github.io/MathNote/)のソースです
 
 私的な数学ノートです。  
 同様の形式でノートを作りたいと思った方がいらっしゃれば、cloneして参考にしてください。
