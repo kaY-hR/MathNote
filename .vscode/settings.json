@@ -1,3 +1,15 @@
 {
-    "markdown-preview-enhanced.enableScriptExecution": true
+    "markdown-preview-enhanced.enableScriptExecution": true,
+    "markdown.copyFiles.destination": {
+        "/source/**/*": "assets/${documentBaseName}/"
+      },
+      "[markdown]":  {
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "strings": "on",
+            "other": "on"
+        },
+        "editor.snippetSuggestions": "top"
+    }
 }
