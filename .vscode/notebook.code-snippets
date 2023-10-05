@@ -35,7 +35,7 @@
 	},
 	"bold":{
 		"scope":"latex",
-		"prefix":"bold",
+		"prefix":"bm",
 		"body":[
 			"\\bm{}"
 		],
@@ -51,14 +51,14 @@
 		],
 		"description":"align"
 	},
-	"vec":{
+	"matrix":{
 		"scope":"latex",
-		"prefix":"vec",
+		"prefix":"mat",
 		"body":[
 			"\\begin{pmatrix}",
 			"",
 			"\\end{pmatrix}",
 		],
-		"description":"vec"
+		"description":"matrix or vector"
 	},
 }
