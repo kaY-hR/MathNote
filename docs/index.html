@@ -51,6 +51,12 @@
 
                     // タブの選択情報を保存
                     sessionStorage.setItem('selectedTab', tab.id);
+
+                    // 新しいクエリパラメータを設定
+                    currentUrl.searchParams.set('tab', tab.id);
+
+                    // 更新されたURLをブラウザのアドレスバーに反映
+                    window.history.replaceState({}, document.title,  new URL(window.location.href).href);
                 });
 
                 const label = document.createElement('label');
